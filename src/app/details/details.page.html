@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="space-between ion-justify-content-center">
+      <img [src]="clickedTraining.imgUrl" width="250px">
+    </ion-row>
+    <ion-row class="space-between">
+      <ion-col size="auto">
+        <ion-label><span class="bold">ID :</span></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><span>{{clickedTraining.id}}</span></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="space-between">
+      <ion-col size="auto">
+        <ion-label><span class="bold">Name :</span></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><span>{{clickedTraining.name}}</span></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="space-between">
+      <ion-col size="auto">
+        <ion-label><span class="bold">Description :</span></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><span>{{clickedTraining.description}}</span></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="space-between">
+      <ion-col size="auto">
+        <ion-label><span class="bold">Period :</span></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><span>{{clickedTraining.period}}h</span></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="space-between">
+      <ion-col size="auto">
+        <ion-label><span class="bold">Prerequisite :</span></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><span>{{clickedTraining.prerequisite}}</span></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="space-between">
+      <ion-col size="auto">
+        <ion-label><span class="bold">Price :</span></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><span>{{clickedTraining.price}}$</span></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-button fill="outline" (click)="getStarted()">Get Started</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

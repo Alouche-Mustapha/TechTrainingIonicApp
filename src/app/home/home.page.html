@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="">
+      <h1 class="">Start learning :</h1>
+    </ion-row>
+    <ion-row class="" *ngFor="let training of trainingsList">
+      <ion-card button="true" (click)="showInfo(training)">
+        <ion-item>
+          <ion-icon name={{training.iconName}} slot="start"></ion-icon>
+          <ion-label><span>{{training.name}} course</span></ion-label>
+          <ion-button fill="outline" slot="end" (click)="showInfo(training)">Show more</ion-button>
+        </ion-item>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" style="margin: 5%;">
+    <ion-fab-button closeIcon="close"><span style="font-family: Acme, sans-serif; font-weight: bold;">MORE</span></ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button>
+        <ion-icon name="list" (click)="showPurchasedTrainings()"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating"><span>Email</span></ion-label>
+    <ion-input type="email" [(ngModel)]="user.email" clearInput="true" required="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating"><span>Password</span></ion-label>
+    <ion-input type="password" [(ngModel)]="user.password" clearInput="true" required="true"></ion-input>
+  </ion-item>
+  <div style="margin-left: 5%;">
+    <ion-button fill="outline" (click)="authenticationService.loginUser(data, user, router)">Login</ion-button>
+    <ion-button *ngIf="show == true" fill="outline" (click)="signUp()">Signup</ion-button>
+    <ion-button fill="outline" (click)="reset()">Forget password</ion-button>
+  </div>
+</ion-content>
