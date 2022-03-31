@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 export class DetailsPage implements OnInit {
 
   clickedTraining : any
+  loaded : boolean
 
   constructor(private route : ActivatedRoute, private router : Router, private location : Location) { 
   }
@@ -19,11 +20,15 @@ export class DetailsPage implements OnInit {
   }
 
   getStarted(){
-    this.router.navigate(['/login'], {queryParams: {course: this.clickedTraining.name, price: this.clickedTraining.price, source : "detailsPage"}})
+    this.router.navigate(['/login'], {queryParams: {trainingID : this.clickedTraining.id, trainingName: this.clickedTraining.name, trainingPrice: this.clickedTraining.price, sourcePage : "detailsPage"}})
   }
   
   backPage(){
     this.location.back()
+  }
+
+  onImageLoaded() {
+    this.loaded = true
   }
 
 }

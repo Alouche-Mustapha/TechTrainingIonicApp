@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>purchasedTrainings</ion-title>
+    <ion-title>Purchased trainings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row class="space-between">
+      <ion-label><span class="bold">Hello {{userFullName}}</span></ion-label>    
+    </ion-row>
+    <ion-row class="space-between">
+      <ion-label><span class="bold">Your purchased trainings  :</span></ion-label>
+    </ion-row>
+    <ion-row *ngFor="let training of purchasedTrainings">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-label><span class="bold">Training : {{training.purchasedTraining}}</span></ion-label>    
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row class="space-between">
+            <ion-label><span class="bold">Price : {{training.purchasePrice}}$</span></ion-label>    
+          </ion-row>
+          <ion-row class="space-between">
+            <ion-label><span class="bold">Date : {{training.purchaseDate}} at {{training.purchaseTime}}</span></ion-label>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row *ngIf="loaded" class="ion-justify-content-center">
+      <ion-button fill="outline" (click)="homePage()">Home</ion-button>
+    </ion-row>
+  </ion-grid>
 </ion-content>

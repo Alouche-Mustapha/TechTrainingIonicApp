@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+  <ion-grid *ngIf="loaded">
     <ion-row class="">
       <h1 class="">Start learning :</h1>
     </ion-row>
-    <ion-row class="" *ngFor="let training of trainingsList">
+    <ion-row *ngFor="let training of trainingsList">
       <ion-card button="true" (click)="showInfo(training)">
         <ion-item>
           <ion-icon name={{training.iconName}} slot="start"></ion-icon>
@@ -21,7 +21,7 @@
       </ion-card>
     </ion-row>
   </ion-grid>
-  <ion-fab vertical="bottom" horizontal="end" style="margin: 5%;">
+  <ion-fab *ngIf="loaded" vertical="bottom" horizontal="end" style="margin: 5%;">
     <ion-fab-button closeIcon="close"><span style="font-family: Acme, sans-serif; font-weight: bold;">MORE</span></ion-fab-button>
     <ion-fab-list side="start">
       <ion-fab-button>

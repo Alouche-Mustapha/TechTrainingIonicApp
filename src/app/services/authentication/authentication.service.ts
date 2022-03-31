@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { getDoc, doc, collection, addDoc, setDoc } from 'firebase/firestore';
+import { getDoc, doc, addDoc, setDoc } from 'firebase/firestore';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { UserSignin, UserSignup } from '../../Models/user.interface';
@@ -18,10 +18,22 @@ export class AuthenticationService {
     signInWithEmailAndPassword(auth, user.email, user.password)
     .then((usr)=>{
       getDoc(doc(db, "users", usr.user.uid))
-      .then((doc) => {
-        const userData = doc.data()
-        data = {...data, fullName: userData.FullName}          
-        router.navigate(['/recap',data]);
+      .then((document) => {
+        if(data.sourcePage == "detailsPage") {
+          let userData = document.data()
+          let localTime = new Date()
+          setDoc(doc(db, "purchases", usr.user.uid + data.trainingID), {
+            purchaseID : usr.user.uid + data.trainingID,
+            userID : usr.user.uid,
+            trainingID : data.trainingID,
+            purchaseTime : localTime
+          })        
+          let recapData = {fullName : userData.fullName, training : data.trainingName, price : data.trainingPrice, userID : usr.user.uid}
+          router.navigate(['/recap',recapData]);
+        } else if (data.sourcePage == "homePage") {
+          const data = {userID : usr.user.uid, userFullName : document.data().fullName}
+          router.navigate(['/purchased-trainings', data])
+        }
       })
     }).catch(()=>{
       alert('Email or password is incorrect');
@@ -33,12 +45,20 @@ export class AuthenticationService {
       createUserWithEmailAndPassword(auth, user.email, password)
       .then((usr) => {
         setDoc(doc(db, "users", usr.user.uid), {
-          FullName: user.fullname,
-          Email: user.email,
-          Phone: user.phoneNumber
-        }).then(() => {          
-          data = {...data, fullName: user.fullname}
-          router.navigate(['/recap',data]);})
+          id : usr.user.uid,
+          fullName: user.fullname,
+          email: user.email,
+          phone: user.phoneNumber
+        }).then(() => {  
+          let localTime = new Date()
+          setDoc(doc(db, "purchases", usr.user.uid + data.trainingID), {
+            purchaseID : usr.user.uid + data.trainingID,
+            userID : usr.user.uid,
+            trainingID : data.trainingID,
+            purchaseTime : localTime
+          })    
+          let recapData = {fullName : user.fullname, training : data.trainingName, price : data.trainingPrice, userID : usr.user.uid}
+          router.navigate(['/recap',recapData]);})
         .catch(() => console.log("Failed to create doc"))
       })
       .catch(() => alert("Signup failed"))

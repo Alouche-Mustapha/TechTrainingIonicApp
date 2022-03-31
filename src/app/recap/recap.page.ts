@@ -14,10 +14,14 @@ export class RecapPage implements OnInit {
 
   ngOnInit() {
     this.recapData = this.route.snapshot.params  
+    console.log(this.recapData.userID);
   }
 
   homePage() : void {
     this.router.navigate(['/home'])
   }
 
+  purchasedTrainings() : void {
+        
+  }
 }

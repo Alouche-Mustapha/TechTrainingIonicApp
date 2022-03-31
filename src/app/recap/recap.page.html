@@ -7,7 +7,9 @@
 <ion-content>
   <div style="margin: 5%;">
     <p>Welcome {{recapData.fullName}}</p>
-    <p>You have successfully purchase {{recapData.course}} for {{recapData.price}}$</p>
+    <p>You have successfully purchase {{recapData.training}} for {{recapData.price}}$</p>
+    <p>You can view all your purchased trainings by clicking the next button</p>
+    <ion-button fill="outline" (click)="purchasedTrainings()" >View my purchased trainings</ion-button>
     <ion-button fill="outline" (click)="homePage()" >Home</ion-button>
   </div>
 </ion-content>

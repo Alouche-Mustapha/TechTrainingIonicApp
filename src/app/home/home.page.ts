@@ -3,7 +3,7 @@ import { db } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { collection, getDocs } from 'firebase/firestore';
 
-import { Training, TrainingC } from './../Models/training.interface';
+import { Training } from './../Models/training.interface';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,8 @@ import { Training, TrainingC } from './../Models/training.interface';
 
 export class HomePage implements OnInit {
 
-  trainingsList : Array<TrainingC>
+  trainingsList : Array<Training>
+  loaded : boolean
 
   constructor(private router : Router) {
     getDocs(collection(db, 'trainings'))
@@ -23,6 +24,8 @@ export class HomePage implements OnInit {
         allTrainings.push(doc.data());
       });
       this.trainingsList = allTrainings;
+    }).then(() => {
+      this.loaded = true
     })
     .catch(() => alert("Could not load the data from the server"));
   }
@@ -35,6 +38,6 @@ export class HomePage implements OnInit {
   }
 
   showPurchasedTrainings() {
-    this.router.navigate(['/login'], {queryParams: {source : "homePage"}});
+    this.router.navigate(['/login'], {queryParams: {sourcePage : "homePage"}});
   }
 }

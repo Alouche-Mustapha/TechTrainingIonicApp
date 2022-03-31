@@ -22,9 +22,9 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params: any) => {
       this.data = params      
-      if (params['source'] == "detailsPage") {
+      if (params['sourcePage'] == "detailsPage") {
         this.show = true
-      } else if (params['source'] == "homePage") {
+      } else if (params['sourcePage'] == "homePage") {
         this.show = false
       }
     })
@@ -38,4 +38,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/register', this.data]);
   }
 
+  homePage(){
+    this.router.navigate(['/home']);
+  }
 }

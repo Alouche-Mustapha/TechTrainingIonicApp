@@ -15,4 +15,8 @@ export class ResetPasswordPage implements OnInit {
   constructor(public router : Router) { }
 
   ngOnInit() {}
+
+  homePage(){
+    this.router.navigate(['/home']);
+  }
 }

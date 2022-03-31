@@ -10,6 +10,7 @@ import { UserSignup } from './../Models/user.interface';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
+
 export class RegisterPage implements OnInit {
 
   authenticationService = new AuthenticationService()
@@ -24,5 +25,9 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
       this.data = this.route.snapshot.params
       this.checked = false
+  }
+
+  homePage(){
+    this.router.navigate(['/home']);
   }
 }
