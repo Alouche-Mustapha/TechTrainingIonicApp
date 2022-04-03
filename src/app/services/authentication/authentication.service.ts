@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { getDoc, doc, addDoc, setDoc } from 'firebase/firestore';
+import { getDoc, getDocs, doc, addDoc, setDoc, query, where, collection } from 'firebase/firestore';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { UserSignin, UserSignup } from '../../Models/user.interface';
@@ -17,22 +17,36 @@ export class AuthenticationService {
   loginUser(data : any, user : UserSignin, router : Router) :void {
     signInWithEmailAndPassword(auth, user.email, user.password)
     .then((usr)=>{
-      getDoc(doc(db, "users", usr.user.uid))
-      .then((document) => {
-        if(data.sourcePage == "detailsPage") {
-          let userData = document.data()
-          let localTime = new Date()
-          setDoc(doc(db, "purchases", usr.user.uid + data.trainingID), {
-            purchaseID : usr.user.uid + data.trainingID,
-            userID : usr.user.uid,
-            trainingID : data.trainingID,
-            purchaseTime : localTime
-          })        
-          let recapData = {fullName : userData.fullName, training : data.trainingName, price : data.trainingPrice, userID : usr.user.uid}
-          router.navigate(['/recap',recapData]);
-        } else if (data.sourcePage == "homePage") {
-          const data = {userID : usr.user.uid, userFullName : document.data().fullName}
-          router.navigate(['/purchased-trainings', data])
+      getDocs(query(collection(db, "purchases"), where("userID", "==", usr.user.uid)))
+      .then((docs) => {
+        let alreadyPurchased = false
+        docs.docs.forEach((document) => {
+          if (document.data().trainingID == data.trainingID) {
+            alert("You have already purchased this training")
+            alreadyPurchased = true
+          }
+        })  
+        if (!alreadyPurchased) {
+          getDoc(doc(db, "users", usr.user.uid))
+          .then((document) => {
+            if(data.sourcePage == "detailsPage") {
+              let userData = document.data()
+              let localTime = new Date()
+              setDoc(doc(db, "purchases", usr.user.uid + data.trainingID), {
+                purchaseID : usr.user.uid + data.trainingID,
+                userID : usr.user.uid,
+                trainingID : data.trainingID,
+                purchaseTime : localTime
+              })        
+              let recapData = {fullName : userData.fullName, training : data.trainingName, price : data.trainingPrice, userID : usr.user.uid}
+              router.navigate(['/recap',recapData]);
+            } else if (data.sourcePage == "homePage") {
+              const data = {userID : usr.user.uid, userFullName : document.data().fullName}
+              router.navigate(['/purchased-trainings', data])
+            }
+          })
+        } else {
+          router.navigate(['/home'])
         }
       })
     }).catch(()=>{

@@ -1,5 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from 'src/environments/environment';
 
 @Component({
   selector: 'app-recap',
@@ -14,7 +16,7 @@ export class RecapPage implements OnInit {
 
   ngOnInit() {
     this.recapData = this.route.snapshot.params  
-    console.log(this.recapData.userID);
+    console.log(this.recapData);
   }
 
   homePage() : void {
@@ -22,6 +24,10 @@ export class RecapPage implements OnInit {
   }
 
   purchasedTrainings() : void {
-        
+    getDoc(doc(db, "users", this.recapData.userID))
+    .then((doc) => {
+      const data = {userID : this.recapData.userID, userFullName : doc.data().fullName}
+      this.router.navigate(['/purchased-trainings', data])   
+    })
   }
 }
