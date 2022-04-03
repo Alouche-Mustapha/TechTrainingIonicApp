@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { db } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { collection, getDocs } from 'firebase/firestore';
 
 import { Training } from './../Models/training.interface';
+import { db } from './../../environments/environment';
 
 @Component({
   selector: 'app-home',

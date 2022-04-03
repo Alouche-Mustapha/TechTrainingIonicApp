@@ -75,7 +75,7 @@ export class AuthenticationService {
           router.navigate(['/recap',recapData]);})
         .catch(() => console.log("Failed to create doc"))
       })
-      .catch(() => alert("Signup failed"))
+      .catch((error) => alert("Signup failed : " + error))
     } else {
       alert("Password dont match confirm password")
     }

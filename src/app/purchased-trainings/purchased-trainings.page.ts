@@ -1,5 +1,5 @@
 import { db } from './../../environments/environment';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { query, where, getDocs, collection, getDoc, doc } from 'firebase/firestore'
 

@@ -33,6 +33,6 @@
       <ion-label><span>I have agreed to the termes and conditions</span></ion-label>
     </ion-col>
   </ion-row>
-  <ion-button style="margin-left: 5%;" (click)="homePage()">Home</ion-button>
-  <ion-button color="tertiary" (click)="authenticationService.signUp(password, confirmPassword, user, data, router)" disabled={{!checked}}>Signup</ion-button>
+  <ion-button style="margin-left: 5%;" fill="outline" (click)="homePage()">Home</ion-button>
+  <ion-button fill="outline" (click)="authenticationService.signUp(password, confirmPassword, user, data, router)" disabled={{!checked}}>Signup</ion-button>
 </ion-content>
