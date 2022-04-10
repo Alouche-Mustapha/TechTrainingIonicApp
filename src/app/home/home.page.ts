@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { collection, getDocs } from 'firebase/firestore';
@@ -16,7 +17,7 @@ export class HomePage implements OnInit {
   trainingsList : Array<Training>
   loaded : boolean
 
-  constructor(private router : Router) {
+  constructor(private router : Router, public alertController : AlertController) {
     getDocs(collection(db, 'trainings'))
     .then((snapshot)=>{
       const allTrainings = [];
@@ -39,5 +40,15 @@ export class HomePage implements OnInit {
 
   showPurchasedTrainings() {
     this.router.navigate(['/login'], {queryParams: {sourcePage : "homePage"}});
+  }
+
+  async showAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Subtitle',
+      message: 'This is an alert message.',
+      buttons: ['OK']
+    })
+    await alert.present()
   }
 }

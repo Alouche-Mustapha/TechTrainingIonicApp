@@ -1,7 +1,10 @@
 {
   "name": "TechTraining",
   "integrations": {
-    "cordova": {}
+    "cordova": {
+      "enabled": false
+    },
+    "capacitor": {}
   },
   "type": "angular"
 }
