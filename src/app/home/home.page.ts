@@ -41,14 +41,4 @@ export class HomePage implements OnInit {
   showPurchasedTrainings() {
     this.router.navigate(['/login'], {queryParams: {sourcePage : "homePage"}});
   }
-
-  async showAlert() {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
-      buttons: ['OK']
-    })
-    await alert.present()
-  }
 }
