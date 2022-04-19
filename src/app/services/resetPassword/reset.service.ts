@@ -11,10 +11,10 @@ export class ResetService {
 
   constructor() { }
 
-  resetPassword(email : string, router : Router) {
+  resetPassword(email: string, router: Router) {
     sendPasswordResetEmail(auth, email)
     .then(() => alert('Please check your email verification link'))
-    .catch(() => alert('Something went wrong'))
-    router.navigate(['/home'])
+    .catch(() => alert('Something went wrong'));
+    router.navigate(['/home']);
   }
 }

@@ -14,10 +14,10 @@ import { db } from './../../environments/environment';
 
 export class HomePage implements OnInit {
 
-  trainingsList : Array<Training>
-  loaded : boolean
+  trainingsList: Array<Training>;
+  loaded: boolean;
 
-  constructor(private router : Router, public alertController : AlertController) {
+  constructor(private router: Router, public alertController: AlertController) {
     getDocs(collection(db, 'trainings'))
     .then((snapshot)=>{
       const allTrainings = [];
@@ -26,19 +26,19 @@ export class HomePage implements OnInit {
       });
       this.trainingsList = allTrainings;
     }).then(() => {
-      this.loaded = true
+      this.loaded = true;
     })
-    .catch(() => alert("Could not load the data from the server"));
+    .catch(() => alert('Could not load the data from the server'));
   }
 
   ngOnInit(): void {
   }
 
-  showInfo(training : any) : void {   
+  showInfo(training: any): void {
     this.router.navigate(['/details', training]);
   }
 
   showPurchasedTrainings() {
-    this.router.navigate(['/login'], {queryParams: {sourcePage : "homePage"}});
+    this.router.navigate(['/login'], {queryParams: {sourcePage : 'homePage'}});
   }
 }

@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPasswordPage implements OnInit {
 
-  resteService = new ResetService()
-  email : string
-  
-  constructor(public router : Router) { }
+  resteService = new ResetService();
+  email: string;
+
+  constructor(public router: Router) { }
 
   ngOnInit() {}
 

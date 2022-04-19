@@ -13,18 +13,18 @@ import { UserSignup } from './../Models/user.interface';
 
 export class RegisterPage implements OnInit {
 
-  authenticationService = new AuthenticationService()
-  user = new UserSignup()
-  data : any
-  password : string
-  confirmPassword : string
-  checked : boolean
+  authenticationService = new AuthenticationService();
+  user = new UserSignup();
+  data: any;
+  password: string;
+  confirmPassword: string;
+  checked: boolean;
 
-  constructor(private route : ActivatedRoute, public router : Router) { }
+  constructor(private route: ActivatedRoute, public router: Router) { }
 
   ngOnInit() {
-      this.data = this.route.snapshot.params
-      this.checked = false
+      this.data = this.route.snapshot.params;
+      this.checked = false;
   }
 
   homePage(){

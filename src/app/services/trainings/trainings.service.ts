@@ -12,11 +12,11 @@ export class TrainingsService {
 
   constructor() { }
 
-  getPurchasedTrainings(userID : string, router : Router) {
-    getDoc(doc(db, "users", userID))
-    .then((doc) => {
-      const data = {userID : userID, userFullName : doc.data().fullName}
-      router.navigate(['/purchased-trainings', data])   
-    })
+  getPurchasedTrainings(userID: string, router: Router) {
+    getDoc(doc(db, 'users', userID))
+    .then((resDoc) => {
+      const data = {userID, userFullName : resDoc.data().fullName};
+      router.navigate(['/purchased-trainings', data]);
+    });
   }
 }

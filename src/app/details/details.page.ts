@@ -9,26 +9,33 @@ import { Location } from '@angular/common';
 })
 export class DetailsPage implements OnInit {
 
-  clickedTraining : any
-  loaded : boolean
+  clickedTraining: any;
+  loaded: boolean;
 
-  constructor(private route : ActivatedRoute, private router : Router, private location : Location) { 
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
   }
 
-  ngOnInit(): void {  
-    this.clickedTraining = this.route.snapshot.params
+  ngOnInit(): void {
+    this.clickedTraining = this.route.snapshot.params;
   }
 
   getStarted(){
-    this.router.navigate(['/login'], {queryParams: {trainingID : this.clickedTraining.id, trainingName: this.clickedTraining.name, trainingPrice: this.clickedTraining.price, sourcePage : "detailsPage"}})
+    this.router.navigate(['/login'],
+    {
+      queryParams: {
+      trainingID : this.clickedTraining.id,
+      trainingName: this.clickedTraining.name,
+      trainingPrice: this.clickedTraining.price,
+      sourcePage : 'detailsPage'}
+    });
   }
-  
+
   backPage(){
-    this.location.back()
+    this.location.back();
   }
 
   onImageLoaded() {
-    this.loaded = true
+    this.loaded = true;
   }
 
 }

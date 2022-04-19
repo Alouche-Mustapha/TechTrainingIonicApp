@@ -9,21 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecapPage implements OnInit {
 
-  trainingsService = new TrainingsService()
-  recapData : any
+  trainingsService = new TrainingsService();
+  recapData: any;
 
-  constructor(private route : ActivatedRoute, private router : Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.recapData = this.route.snapshot.params  
+    this.recapData = this.route.snapshot.params;
     console.log(this.recapData);
   }
 
-  homePage() : void {
-    this.router.navigate(['/home'])
+  homePage(): void {
+    this.router.navigate(['/home']);
   }
 
-  purchasedTrainings() : void {
-    this.trainingsService.getPurchasedTrainings(this.recapData.userID, this.router)
+  purchasedTrainings(): void {
+    this.trainingsService.getPurchasedTrainings(this.recapData.userID, this.router);
   }
 }

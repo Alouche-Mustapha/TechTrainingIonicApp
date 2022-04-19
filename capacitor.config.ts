@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.app',
-  appName: 'io.ionic.starter',
+  appId: 'ensao.gi4.mustapha.ionicApp',
+  appName: 'TechTraining',
   webDir: 'www',
   bundledWebRuntime: false,
   cordova: {

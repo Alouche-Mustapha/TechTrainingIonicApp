@@ -11,29 +11,29 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  authenticationService = new AuthenticationService()
+  authenticationService = new AuthenticationService();
   user = new UserSignin();
-  data : any;
-  show : boolean
+  data: any;
+  show: boolean;
 
-  constructor(private route : ActivatedRoute, public router : Router, public alertController : AlertController) {
+  constructor(private route: ActivatedRoute, public router: Router, public alertController: AlertController) {
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: any) => {
-      this.data = params      
-      if (params['sourcePage'] == "detailsPage") {
-        this.show = true
-      } else if (params['sourcePage'] == "homePage") {
-        this.show = false
+      this.data = params;
+      if (params.sourcePage === 'detailsPage') {
+        this.show = true;
+      } else if (params.sourcePage === 'homePage') {
+        this.show = false;
       }
-    })
+    });
   }
 
   reset(): void {
     this.router.navigate(['/reset-password']);
   }
-  
+
   signUp(): void {
     this.router.navigate(['/register', this.data]);
   }
